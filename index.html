@@ -18,62 +18,78 @@
 
 <body>
 
-	<div id="modal" class="modal is-active is-clipped">
-	  <div class="modal-background"></div>
+	<div id="modal" class="modal is-active is-clipped is-clearfix">
+	  <div class="modal-background has-background-white"></div>
 	  <div class="modal-content">
-	    
-		<div class="field is-grouped">
-	  		<p class="control">
-	    		<input id="username" class="input" type="text" placeholder="Enter your name">
-	  		</p>
-	  		<p class="control">
-	    		<a class="button is-info" id="login">
-	      			Enter
-	    		</a>
-	  		</p>
-		</div>
-
-	  </div>
-	  <button class="modal-close is-large" aria-label="close"></button>
-	</div>
-
-    <section class="hero is-info is-fullheight">
-        <div class="hero-head">
-            
-            </div>
-
+	  	<section class="hero has-background-white">
             <div class="hero-body">
-                <div class="container has-text-centered">
-                    <div class="column is-6 is-offset-3">
-                        <h1 class="title">
-                            Wim Hof Breathing Sessions
-                        </h1>
-                        <h2 class="subtitle">
-                            Info about sessions
-                        </h2>
-                        <div class="box is-pulled-left">
-                            <div class="field has-addons">
-							  <div class="control">
-							    <input class="input is-small" type="number" placeholder="Number of rounds">
-							  </div>
-							  <div class="control">
-							    <a class="button is-info is-small">
-							      Start a new session
-							    </a>
-							  </div>
-							</div>
-                        </div>
-
-                        <div class="box is-pulled-right">
-                            <p>streak info</p>
-                        </div>
-                    </div>
+                <div class="container">
+                	<h1 class="has-text-centered is-size-1 has-text-info">welcome to breathe</h1>
                 </div>
             </div>
+    	</section>
+    	<div class="container">
+    		<div class="field is-grouped">
+		  		<p class="container control">
+		    		<input id="username" class="input is-round is-info is-medium" type="text" placeholder="Enter your name">
+		  		</p>
+		  		<p class="control">
+		    		<a class="button is-info is-medium" id="login" type="submit">
+		      			Enter
+		    		</a>
+		  		</p>
+			</div>
+    	</div>
+	  </div>
+	  <button class="modal-close is-large has-background-light" aria-label="close" id="close"></button>
+	</div>
 
+	<!-- top banner -->
+    <section class="hero has-background-white">
+            <div class="hero-body">
+                <div class="container columns">
+                	<h1 class="column has-text-left is-size-1 has-text-info">breathe</h1>
+                	<h1 class="column has-text-right is-size-1 has-text-primary" id="user-header" data-id="">avi</h1>
+                </div>
+            </div>
     </section>
+    <!-- /top banner -->
 
-	<div id="timerContainer">
+    <!-- streak/begin a session section -->
+	<section class="section has-background-light">
+		<div class="container" id="landing">
+			<div class="columns">
+				<div class="column">
+					<div class="notification field has-addons">
+						<div class="control">
+							<input class="input" type="number" placeholder="Number of rounds" id="rounds">
+						</div>
+						<div class="control">
+							<a class="button is-info" id="new-session">
+					  		Start a new session
+							</a>
+						</div>			
+					</div>
+				</div>
+				<div class="column">
+					<div class="notification is-info">
+						<p class="has-text-centered is-size-3">You have breathed</p>
+						<div class="columns is-centered is-paddingless is-marginless">
+							<div class="column notification is-paddingless is-marginless is-2">
+							<p class="has-text-centered has-text-info is-size-1" id="streak-count">5</p>
+							</div>
+						</div>
+						<p class="has-text-centered is-size-3">days in a row</p>
+					</div>
+				</div>
+			</div>			
+		</div>
+	</section>
+
+    <!-- /streak/begin a session section -->
+
+	<!-- timer -->
+	<div id="timerContainer" class="is-hidden">
 		<div class="timer" onclick="startTimer()">Start Timer!</div>
 		<div class="startTimer reset" onclick="startTimer()" >
 		    <i class="fas fa-play"></i>
@@ -83,10 +99,12 @@
 		  </div>
 		<div class="resetTimer reset" onclick="resetTimer()">Reset</div>
 	</div>
+	<!-- /timer -->
 
     <script defer type="text/javascript" src="js/index.js"></script>
     <script defer type="text/javascript" src="js/timer.js"></script>
     <script defer type="text/javascript" src="js/login.js"></script>
+    <script defer type="text/javascript" src="js/session.js"></script>
 </body>
 
 </html>
