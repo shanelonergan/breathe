@@ -24,43 +24,37 @@ let instructionsColumn = document.querySelector("#instructions-column")
 
 let instructionsText = document.querySelector("#instructions-text")
 
-// helpers
-
-function beginBreathHolding() {
-	if (event.keyCode == 32) {
-		resetTimer()
-		// holdBreathSection.classList.add("is-hidden")
-		breathColumn.classList.add("is-hidden")
-		instructionsColumn.classList.add("is-hidden")
-
-		currentRound = parseInt(currentBreathRoundSpan.innerText, 10)
-		currentBreathRoundSpan.innerText = currentRound += 1
-		// currentHoldRoundSpan.innerText = currentRound += 1
-		document.removeEventListener('keyup', beginBreathHolding)
-		currentBreath = 0
-		breathCount.innerText = currentBreath
-
-	}
-}
+// breathing cycle (chronological order)
 
 function beginSession(){
+	
+	showBreathCounter()
+
+	let totalRounds = roundsInput.value
+	// set the default number of rounds to 1
+	if (totalRounds === "") {
+		totalRounds = 1
+	}
+
+	let currentRound = 1 // set the first round
+	totalRoundsSpan.innerText = totalRounds
+	currentBreathRoundSpan.innerText = currentRound
+}
+
+function showBreathCounter(){
+	// coming from beginSession
+
 	document.addEventListener("keyup", incrementBreath)
 	newRoundColumn.classList.add("is-hidden")
 	streakColumn.classList.add("is-hidden")
 	breathColumn.classList.remove("is-hidden")
 	instructionsColumn.classList.remove("is-hidden")
 	roundCounter.classList.remove("is-hidden")
-
-	let totalRounds = roundsInput.value
-	if (totalRounds === "") {
-		totalRounds = 1
-	}
-	let currentRound = 1
-	totalRoundsSpan.innerText = totalRounds
-	currentBreathRoundSpan.innerText = currentRound
 }
 
 function incrementBreath (event) {
+	// coming from showBreathCounter
+
 	if (event.keyCode == 32){
 		currentBreath = parseInt(breathCount.innerText, 10)
 		if (currentBreath === 5) {
@@ -72,36 +66,60 @@ function incrementBreath (event) {
 	}
 }
 
-function createTimer(){
-	debugger
-	// let timerDiv = document.createElement("DIV")
-	// let timerContainer = document.createElement("DIV")
-	// let timer = document.createElement("P")
-
-	// timerDiv.className = "notification is-info"
-	// timer.className = "timer has-text-centered is-size-1"
-	// timer.innerText = ""
-
-	// timerDiv.appendChild(timerContainer)
-	// timerContainer.appendChild(timer)
-
-	// timerColumn.appendChild(timerDiv)
-	// console.log(timerDiv)
-
-}
 
 function holdBreath() {
-	console.log(sessionSection)
-	// timer.classList.remove("is-hidden")
-	// sessionSection.classList.add("is-hidden")
-	// holdBreathSection.classList.remove("is-hidden")
+	// coming from incrementBreath
 
+	document.addEventListener("keyup", incrementBreath)
 	breathColumn.classList.add("is-hidden")
 	timerColumn.classList.remove("is-hidden")
 	instructionsText.innerText = "Hold as long as you can! Press space when you exhale."
 
 	startTimer()
 	document.addEventListener('keyup', beginBreathHolding)
+}
+
+function beginBreathHolding() {
+	// coming from holdBreath 
+
+	if (event.keyCode == 32) {
+		resetTimer()
+		breathColumn.classList.add("is-hidden")
+		timerColumn.classList.add("is-hidden")
+		instructionsText.innerText = "Now take one more big inhale and hold at the top! Press space once you have inhaled."
+
+		document.removeEventListener('keyup', beginBreathHolding)
+		document.addEventListener("keyup", addShortHold)
+		currentBreath = 0
+		breathCount.innerText = currentBreath
+
+	}
+}
+
+function addShortHold(){
+	// coming from beginBreathHolding
+	if (event.keyCode == 32) {
+		shortHold()
+		document.removeEventListener("keyup", addShortHold)
+	}
+}
+
+function shortHold() {
+	// coming from add short hold
+
+	if (parseInt(currentBreathRoundSpan.innerText, 10) === parseInt(totalRoundsSpan.innerText, 10)) {
+		timerColumn.classList.add("is-hidden")
+		instructionsColumn.classList.add("is-hidden")
+		roundCounter.classList.add("is-hidden")
+		newRoundColumn.classList.remove("is-hidden")
+		streakColumn.classList.remove("is-hidden")
+
+	} else {
+		debugger
+		showBreathCounter()
+		currentRound = parseInt(currentBreathRoundSpan.innerText, 10)
+		currentBreathRoundSpan.innerText = currentRound += 1
+	}
 }
 
 // events 
