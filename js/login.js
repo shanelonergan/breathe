@@ -54,7 +54,7 @@ function slapUserInfo(user){
 	banner = document.querySelector("#banner")
 	userHeader = document.createElement("H1")
 	userHeader.innerText = user.name
-	userHeader.className += "column has-text-right is-size-1 has-text-primary animated fadeInUpBig"
+	userHeader.className += "column has-text-right is-size-1 has-text-primary animated bounceInDown"
 	userHeader.dataset.id = user.id
 	banner.appendChild(userHeader)
 }
