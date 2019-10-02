@@ -24,7 +24,7 @@
 	  	<section class="hero has-background-white">
             <div class="hero-body">
                 <div class="container">
-                	<h1 class="has-text-centered is-size-1 has-text-info">welcome to breathe</h1>
+                	<h1 class="has-text-centered is-size-1 has-text-info animated fadeInUpBig">welcome to breathe</h1>
                 </div>
             </div>
     	</section>
@@ -41,25 +41,29 @@
 			</div>
     	</div>
 	  </div>
-	  <button class="modal-close is-large has-background-light" aria-label="close" id="close"></button>
 	</div>
 
 	<!-- top banner -->
     <section class="hero has-background-white">
             <div class="hero-body">
-                <div class="container columns">
+                <div class="container columns" id="banner">
                 	<h1 class="column has-text-left is-size-1 has-text-info">breathe</h1>
-                	<h1 class="column has-text-right is-size-1 has-text-primary" id="user-header" data-id="">avi</h1>
+                	<!-- <h1 class="column has-text-right is-size-1 has-text-primary" id="user-header" data-id="">avi</h1> -->
                 </div>
             </div>
     </section>
     <!-- /top banner -->
 
     <!-- streak/begin a session section -->
-	<section class="section has-background-light">
-		<div class="container" id="landing">
+	<section class="section has-background-light" id="landing">
+		<div class="container">
+			<section class="hero is-hidden" id="round-counter">
+				<div class="hero-body">
+					<h1 class="has-text-centered is-size-3 has-text-info"> round <span id="breath-current-round">1</span> of <span id="total-rounds">3</span></h1>
+				</div>
+			</section>
 			<div class="columns">
-				<div class="column">
+				<div class="column" id= "new-round-column">
 					<div class="notification field has-addons">
 						<div class="control">
 							<input class="input" type="number" placeholder="Number of rounds" id="rounds">
@@ -71,7 +75,24 @@
 						</div>			
 					</div>
 				</div>
-				<div class="column">
+				<div class="column is-hidden" id = "breath-column">
+					<div class="notification is-info" id="breath-div">
+							<p class="has-text-centered is-size-3">breath count</p>
+						<div class="columns is-centered is-paddingless is-marginless">
+							<div class="column notification is-paddingless is-marginless is-2">
+								<p class="has-text-centered has-text-info is-size-1" id="breath-count">0</p>
+							</div>
+						</div>		
+					</div>	
+				</div>			
+				<div class="column is-hidden" id = "timer-column">
+					<div class="notification is-info">
+						<div id="timerContainer">
+							<p class="timer has-text-centered is-size-1">Start Timer!</p>
+						</div>							
+					</div> 
+				</div>				
+				<div class="column" id = "streak-column">
 					<div class="notification is-info">
 						<p class="has-text-centered is-size-3">You have breathed</p>
 						<div class="columns is-centered is-paddingless is-marginless">
@@ -82,23 +103,82 @@
 						<p class="has-text-centered is-size-3">days in a row</p>
 					</div>
 				</div>
+				<div class="column is-hidden" id = "instructions-column">
+					<div class="notification is-info">
+						<p id = "instructions-text">We will start with 30 deep breaths. After each exhale, hit the space key. After your 30th breath, exhale halfway, and then press the spacebar. Begin holding your breath!</p>
+					</div>
+				</div>
+				<!-- <div class="column is-hidden" id = "">
+					<div class="notification is-info">
+						<p>Hold as long as you can! Press space when you exhale. </p>
+					</div>
+				</div> -->				
+			</div>				
 			</div>			
 		</div>
 	</section>
 
     <!-- /streak/begin a session section -->
 
+    <!-- new session -->
+
+<!--     <section class="section has-background-light is-hidden" id="session">
+		<div class="container" id="landing">
+			<section class="hero">
+				<div class="hero-body">
+					<h1 class="has-text-centered is-size-3 has-text-info"> round <span id="breath-current-round">1</span> of <span id="total-rounds">3</span></h1>
+				</div>
+			</section>
+			
+			<div class="columns">
+				<div class="column" id = "breath-column">
+					<div class="notification is-info" id="breath-div">
+						<p class="has-text-centered is-size-3">breath count</p>
+						<div class="columns is-centered is-paddingless is-marginless">
+							<div class="column notification is-paddingless is-marginless is-2">
+							<p class="has-text-centered has-text-info is-size-1" id="breath-count">0</p>
+							</div>
+						</div>		
+					</div>
+				</div>
+				<div class="column" id = "instructions-column">
+					<div class="notification is-info">
+						<p id = "instructions-text">We will start with 30 deep breaths. After each exhale, hit the space key. After your 30th breath, exhale halfway, and then press the spacebar. Begin holding your breath!</p>
+					</div>
+				</div>
+			</div>			
+		</div>
+	</section> -->
+
+    <!-- /new session -->
+
 	<!-- timer -->
-	<div id="timerContainer" class="is-hidden">
-		<div class="timer" onclick="startTimer()">Start Timer!</div>
-		<div class="startTimer reset" onclick="startTimer()" >
-		    <i class="fas fa-play"></i>
-		  </div>
-		<div class="pauseTimer reset" onclick="pauseTimer()" >
-		    <i class="fas fa-pause"></i>
-		  </div>
-		<div class="resetTimer reset" onclick="resetTimer()">Reset</div>
-	</div>
+
+<!-- 	<section class="section has-background-light is-hidden" id="hold-breath">
+		<div class="container" id="landing">
+			<section class="hero">
+				<div class="hero-body">
+					<h1 class="has-text-centered is-size-3 has-text-info"> round <span id="hold-current-round">1</span> of <span id="total-rounds">3</span></h1>
+				</div>
+			</section>
+			
+			<div class="columns">
+				<div class="column" id = "timer-column">
+					<div class="notification is-info">
+						<div id="timerContainer" class="is-hidden">
+							<p class="timer has-text-centered is-size-1"></p>
+						</div>							
+					</div>
+				</div>
+				<div class="column" id = "">
+					<div class="notification is-info">
+						<p>Hold as long as you can! Press space when you exhale. </p>
+					</div>
+				</div>
+			</div>			
+		</div>
+	</section> -->
+
 	<!-- /timer -->
 
     <script defer type="text/javascript" src="js/index.js"></script>

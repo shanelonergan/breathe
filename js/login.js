@@ -17,18 +17,15 @@ function closeModal(user) {
 
 login.addEventListener("click", loginUser)
 
-modalCloseBttn.addEventListener("click", function(){
-	modal.className = "modal is-clipped"
-})
+document.addEventListener('keyup', function(e) {
+    if (modal.classList.contains("is-active")) {
+    	var key = e.which || e.keyCode;
+    	if (key === 13) { // 13 is enter
+      		loginUser()
+ 		}
+    };
 
-// login.addEventListener('keyup', function(e) {
-//     var key = e.which || e.keyCode;
-//     debugger
-//     if (key === 13) { // 13 is enter
-//     	debugger
-//       	loginUser()
-//   }
-// })
+})
 
 // => fetch 
 
@@ -54,8 +51,10 @@ function loginUser(evt) {
 // => DOM
 
 function slapUserInfo(user){
-	userHeader = document.getElementById("user-header")
-	console.log(userHeader)
-	userHeader.innerText = user.name 
+	banner = document.querySelector("#banner")
+	userHeader = document.createElement("H1")
+	userHeader.innerText = user.name
+	userHeader.className += "column has-text-right is-size-1 has-text-primary animated fadeInUpBig"
 	userHeader.dataset.id = user.id
+	banner.appendChild(userHeader)
 }
