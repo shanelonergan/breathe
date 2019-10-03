@@ -1,16 +1,24 @@
 // variables 
 
+let url ='http://localhost:3000'
+let sessionsUrl = url + "/sessions"
 let sessionButton = document.querySelector("#new-session")
-let landing = document.querySelector("#landing")
+// let landing = document.querySelector("#landing")
 // let timer = document.querySelector("#timerContainer")
 let roundsInput = document.querySelector("#rounds")
-let sessionSection = document.querySelector("#session")
+// let sessionSection = document.querySelector("#session")
 let totalRoundsSpan = document.querySelector("#total-rounds")
 let currentBreathRoundSpan = document.querySelector("#breath-current-round")
 let breathCount = document.querySelector("#breath-count")
 let breathDiv = document.querySelector("#breath-div")
-let holdBreathSection = document.querySelector("#hold-breath")
+// let holdBreathSection = document.querySelector("#hold-breath")
 let roundCounter = document.querySelector("#round-counter")
+let upArrow = document.querySelector("#up-arrow")
+let downArrow = document.querySelector("#down-arrow")
+let roundCount = document.querySelector("#round-count")
+let userHeader = document.querySelector("#user-header")
+let streakCount = document.querySelector("#streak-count")
+
 let currentBreath
 let currentRound
 
@@ -30,15 +38,12 @@ function beginSession(){
 	
 	showBreathCounter()
 
-	let totalRounds = roundsInput.value
-	// set the default number of rounds to 1
-	if (totalRounds === "") {
-		totalRounds = 1
-	}
+	let totalRounds = parseInt(roundCount.innerText, 10)
 
 	let currentRound = 1 // set the first round
 	totalRoundsSpan.innerText = totalRounds
 	currentBreathRoundSpan.innerText = currentRound
+
 }
 
 function showBreathCounter(){
@@ -113,17 +118,70 @@ function shortHold() {
 		roundCounter.classList.add("is-hidden")
 		newRoundColumn.classList.remove("is-hidden")
 		streakColumn.classList.remove("is-hidden")
+		document.removeEventListener("keyup", incrementBreath)
+
+		updateUserSessions()
 
 	} else {
-		debugger
+		
 		showBreathCounter()
 		currentRound = parseInt(currentBreathRoundSpan.innerText, 10)
 		currentBreathRoundSpan.innerText = currentRound += 1
+		currentBreath = 0
+		breathCount.innerText = currentBreath
 	}
 }
 
 // events 
 
 sessionButton.addEventListener("click", beginSession)
+upArrow.addEventListener("click", incrementRound)
+downArrow.addEventListener("click", incrementRound)
 
+function incrementRound(){
+	let roundNum = parseInt(roundCount.innerText)
+	if (event.target.id === "up-arrow") {
+		roundNum += 1
+	} else {
+		roundNum -= 1
+		if (roundNum <= 0) {
+			roundNum = 1
+		}
+	}
+	roundCount.innerText = roundNum
+}
 
+// fetch
+
+function updateUserSessions(){
+	let userId = userHeader.dataset.id
+	let roundNum = parseInt(roundCount.innerText)
+	fetch(sessionsUrl, {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+			"Accept": "application/json"
+		},
+		body: JSON.stringify( {user_id: userId, rounds: roundNum} )
+	})
+	.then(res => res.json())
+	.then(resObj => updateStreak())
+}
+
+function updateStreak(){
+	let userId = userHeader.dataset.id
+	let userUrl = url + "/users/" + userId
+	fetch(userUrl)
+	.then(res => res.json())
+	.then(userObj => slapStreak(userObj))
+}
+
+function slapStreak(user){
+	console.log(user)
+	streak = user.streak
+	if (streak === null) {
+		streak = 0
+	}
+	console.log(streak)
+	streakCount.innerText = streak
+}

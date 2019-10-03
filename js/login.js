@@ -17,15 +17,18 @@ function closeModal(user) {
 
 login.addEventListener("click", loginUser)
 
-document.addEventListener('keyup', function(e) {
+document.addEventListener('keyup', loginEnter)
+
+function loginEnter(event) {
     if (modal.classList.contains("is-active")) {
-    	var key = e.which || e.keyCode;
+    	var key = event.which || event.keyCode;
     	if (key === 13) { // 13 is enter
       		loginUser()
+      		document.removeEventListener('keyup', loginEnter)
  		}
     };
 
-})
+}
 
 // => fetch 
 
@@ -45,6 +48,7 @@ function loginUser(evt) {
 	.then(userObj => {
 		slapUserInfo(userObj)
 		closeModal(userObj)
+		updateStreak()
 	})
 }
 
@@ -56,5 +60,6 @@ function slapUserInfo(user){
 	userHeader.innerText = user.name
 	userHeader.className += "column has-text-right is-size-1 has-text-primary animated bounceInDown"
 	userHeader.dataset.id = user.id
+	userHeader.id = "user-header"
 	banner.appendChild(userHeader)
 }
