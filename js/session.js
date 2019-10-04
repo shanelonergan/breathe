@@ -65,7 +65,7 @@ function incrementBreath (event) {
 
 	if (event.keyCode == 32){
 		currentBreath = parseInt(breathCount.innerText, 10)
-		if (currentBreath === 5) {
+		if (currentBreath === 30) {
 			holdBreath()
 		} else {
 			currentBreath += 1 
