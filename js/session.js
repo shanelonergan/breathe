@@ -1,6 +1,6 @@
 // variables 
 
-let url ='http://localhost:3000'
+let url ='https://breathe-daily.herokuapp.com'
 let sessionsUrl = url + "/sessions"
 let sessionButton = document.querySelector("#new-session")
 // let landing = document.querySelector("#landing")
