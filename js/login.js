@@ -7,10 +7,10 @@ url = "http://localhost:3000/users"
 
 // helpers 
 
-function closeModal(user) {
+function closeModal() {
 	modal.className = "modal is-clipped"
-	name = user.name
-	id = user.id
+	// name = user.name
+	// id = user.id
 }
 
 // => events
@@ -33,6 +33,8 @@ function loginEnter(event) {
 // => fetch 
 
 function loginUser(evt) {
+	login.removeEventListener("click", loginUser)
+	closeModal()
 	let name = document.querySelector("#username").value 
 	fetch('http://localhost:3000/users', {
 		method: 'POST',
@@ -47,7 +49,7 @@ function loginUser(evt) {
 	.then(res => res.json())
 	.then(userObj => {
 		slapUserInfo(userObj)
-		closeModal(userObj)
+		// closeModal(userObj)
 		updateStreak()
 	})
 }
