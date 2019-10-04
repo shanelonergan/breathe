@@ -43,6 +43,9 @@ function beginSession(){
 	let currentRound = 1 // set the first round
 	totalRoundsSpan.innerText = totalRounds
 	currentBreathRoundSpan.innerText = currentRound
+	currentBreath = 0
+	breathCount.innerText = currentBreath
+	instructionsText.innerText = "We will start with 30 deep breaths. After each exhale, hit the space key. After your 30th breath, exhale halfway, and then press the spacebar. Begin holding your breath!"
 
 }
 
@@ -79,7 +82,7 @@ function holdBreath() {
 	breathColumn.classList.add("is-hidden")
 	timerColumn.classList.remove("is-hidden")
 	instructionsText.innerText = "Hold as long as you can! Press space when you exhale."
-
+	instructionsText.style.fontSize = '4vw' 
 	startTimer()
 	document.addEventListener('keyup', beginBreathHolding)
 }
@@ -92,7 +95,7 @@ function beginBreathHolding() {
 		breathColumn.classList.add("is-hidden")
 		timerColumn.classList.add("is-hidden")
 		instructionsText.innerText = "Now take one more big inhale and hold at the top! Press space once you have inhaled."
-
+		instructionsText.style.fontSize = '4.5vw' 
 		document.removeEventListener('keyup', beginBreathHolding)
 		document.addEventListener("keyup", addShortHold)
 		currentBreath = 0
@@ -109,26 +112,42 @@ function addShortHold(){
 	}
 }
 
-function shortHold() {
+function shortHold(){
+	document.addEventListener("keyup", endRound)
+	breathColumn.classList.add("is-hidden")
+	timerColumn.classList.remove("is-hidden")
+	instructionsText.innerText = "Hold for 30 seconds. You are almost done! Press space when you exhale."
+	instructionsText.style.fontSize = '3.435vw' 
+	startTimer()
+}
+
+function endRound() {
 	// coming from add short hold
-
-	if (parseInt(currentBreathRoundSpan.innerText, 10) === parseInt(totalRoundsSpan.innerText, 10)) {
+	if (event.keyCode == 32) {
+		document.removeEventListener("keyup", endRound)
 		timerColumn.classList.add("is-hidden")
-		instructionsColumn.classList.add("is-hidden")
-		roundCounter.classList.add("is-hidden")
-		newRoundColumn.classList.remove("is-hidden")
-		streakColumn.classList.remove("is-hidden")
-		document.removeEventListener("keyup", incrementBreath)
 
-		updateUserSessions()
+		if (parseInt(currentBreathRoundSpan.innerText, 10) === parseInt(totalRoundsSpan.innerText, 10)) {
+			instructionsColumn.classList.add("is-hidden")
+			roundCounter.classList.add("is-hidden")
+			newRoundColumn.classList.remove("is-hidden")
+			streakColumn.classList.remove("is-hidden")
+			document.removeEventListener("keyup", incrementBreath)
+			instructionsText.style.fontSize = '2.3vw'
+			updateUserSessions()
+			resetTimer()
 
-	} else {
-		
-		showBreathCounter()
-		currentRound = parseInt(currentBreathRoundSpan.innerText, 10)
-		currentBreathRoundSpan.innerText = currentRound += 1
-		currentBreath = 0
-		breathCount.innerText = currentBreath
+		} else {
+			
+			showBreathCounter()
+			resetTimer()
+			currentRound = parseInt(currentBreathRoundSpan.innerText, 10)
+			currentBreathRoundSpan.innerText = currentRound += 1
+			currentBreath = 0
+			breathCount.innerText = currentBreath
+			instructionsText.innerText = "We will start with 30 deep breaths. After each exhale, hit the space key. After your 30th breath, exhale halfway, and then press the spacebar. Begin holding your breath!"
+			instructionsText.style.fontSize = '2.3vw'
+		}
 	}
 }
 
@@ -148,7 +167,7 @@ function incrementRound(){
 			roundNum = 1
 		}
 	}
-	roundCount.innerText = roundNum
+	roundCount.innerText = roundNum 
 }
 
 // fetch
