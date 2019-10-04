@@ -3,7 +3,7 @@
 login = document.querySelector("#login")
 modal = document.querySelector("#modal")
 modalCloseBttn = document.querySelector("#close")
-url = "https://breathe-daily.herokuapp.com/users"
+url = "https://breathe-daily.herokuapp.com"
 
 // helpers 
 
@@ -36,7 +36,7 @@ function loginUser(evt) {
 	login.removeEventListener("click", loginUser)
 	closeModal()
 	let name = document.querySelector("#username").value 
-	fetch('https://breathe-daily.herokuapp.com/users', {
+	fetch(url + '/users', {
 		method: 'POST',
 		headers: {
 			"Accept": "application/json",
