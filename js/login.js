@@ -5,12 +5,10 @@ modal = document.querySelector("#modal")
 modalCloseBttn = document.querySelector("#close")
 url = "https://breathe-daily.herokuapp.com"
 
-// helpers 
+// helpers
 
 function closeModal() {
 	modal.className = "modal is-clipped"
-	// name = user.name
-	// id = user.id
 }
 
 // => events
@@ -30,12 +28,12 @@ function loginEnter(event) {
 
 }
 
-// => fetch 
+// => fetch
 
 function loginUser(evt) {
 	login.removeEventListener("click", loginUser)
 	closeModal()
-	let name = document.querySelector("#username").value 
+	let name = document.querySelector("#username").value
 	fetch(url + '/users', {
 		method: 'POST',
 		headers: {
@@ -49,7 +47,6 @@ function loginUser(evt) {
 	.then(res => res.json())
 	.then(userObj => {
 		slapUserInfo(userObj)
-		// closeModal(userObj)
 		updateStreak()
 	})
 }
