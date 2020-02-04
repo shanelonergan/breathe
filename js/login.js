@@ -12,6 +12,9 @@ const screenSize = window.screen.width
 function renderLogin() {
 	if (screenSize > 500) {
 		loginField.classList.add('is-grouped')
+	} else {
+		login.classList.add('is-fullwidth')
+		login.style.margin = '5vw 0'
 	}
 }
 
