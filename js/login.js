@@ -1,9 +1,21 @@
 // => variables
 
-login = document.querySelector("#login")
-modal = document.querySelector("#modal")
-modalCloseBttn = document.querySelector("#close")
-url = "https://breathe-daily.herokuapp.com"
+const login = document.querySelector("#login")
+const loginField = document.querySelector("#field")
+const modal = document.querySelector("#modal")
+const modalCloseBttn = document.querySelector("#close")
+const url = "https://breathe-daily.herokuapp.com"
+const screenSize = window.screen.width
+
+// screen size
+
+function renderLogin() {
+	if (screenSize > 500) {
+		loginField.classList.add('is-grouped')
+	}
+}
+
+renderLogin()
 
 // helpers
 

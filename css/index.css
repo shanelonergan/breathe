@@ -1,3 +1,9 @@
+@media only screen and (max-width: 600px) {
+  #login-div {
+    padding: 0 2vw 0 2vw;
+  }
+}
+
 #banner > h1.column.has-text-left.is-size-1.has-text-info
 
 /* Dropdown Button */
