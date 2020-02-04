@@ -1,10 +1,10 @@
+// import url from './url.js'
 // => variables
-
+console.log(url)
 const login = document.querySelector("#login")
 const loginField = document.querySelector("#field")
 const modal = document.querySelector("#modal")
 const modalCloseBttn = document.querySelector("#close")
-const url = "https://breathe-daily.herokuapp.com"
 const screenSize = window.screen.width
 
 // screen size

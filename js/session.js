@@ -1,6 +1,6 @@
 // variables
 
-let url ='https://breathe-daily.herokuapp.com'
+// let url ='https://breathe-daily.herokuapp.com'
 let sessionsUrl = url + "/sessions"
 let sessionButton = document.querySelector("#new-session")
 let roundsInput = document.querySelector("#rounds")
