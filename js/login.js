@@ -1,6 +1,5 @@
 // import url from './url.js'
 // => variables
-console.log(url)
 const login = document.querySelector("#login")
 const loginField = document.querySelector("#field")
 const modal = document.querySelector("#modal")

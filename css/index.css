@@ -2,6 +2,9 @@
   #login-div {
     padding: 0 2vw 0 2vw;
   }
+  #round-counter {
+    padding-left: 25vw
+  }
 }
 
 #banner > h1.column.has-text-left.is-size-1.has-text-info
@@ -251,3 +254,13 @@
   border-bottom: 100px solid;
 }
 
+/* custom styles */
+
+.card-text-top {
+  padding-bottom: 5vh
+}
+
+#new-session {
+  padding-top: 1.5vh;
+  margin-top: 3.5vh;
+}
