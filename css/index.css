@@ -261,12 +261,32 @@
   height:7vh;
 }
 
+#arrow-div {
+  height: 14vh;
+}
+
+#new-round-div {
+  height:50vh;
+  padding:6vh 4vw;
+}
+
 @media only screen and (max-width: 500px) {
   #login-div {
     padding: 0 2vw 0 2vw;
   }
   #counter-div {
-    margin: 3vh 0 3vh 25vw;
-    height:7vh;
+    margin: 5vh 0 5vh 25vw;
+    height:20vw;
+  }
+  #arrow-div {
+    height: 14vh;
+    padding-top: 20px;
+  }
+  #new-session {
+    padding-top: 0.5vh;
+  }
+  #new-round-div {
+    height:50vh;
+    padding:4vh 4vw;
   }
 }
