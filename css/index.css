@@ -1,13 +1,3 @@
-@media only screen and (max-width: 500px) {
-  #login-div {
-    padding: 0 2vw 0 2vw;
-  }
-  #counter-div {
-    margin: 3vh 0 3vh 25vw;
-    height:7vh;
-  }
-}
-
 #banner > h1.column.has-text-left.is-size-1.has-text-info
 
 /* Dropdown Button */
@@ -269,4 +259,14 @@
 #counter-div {
   margin: 5vh 0 5vh 190px;
   height:7vh;
+}
+
+@media only screen and (max-width: 500px) {
+  #login-div {
+    padding: 0 2vw 0 2vw;
+  }
+  #counter-div {
+    margin: 3vh 0 3vh 25vw;
+    height:7vh;
+  }
 }
