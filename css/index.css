@@ -1,9 +1,10 @@
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 500px) {
   #login-div {
     padding: 0 2vw 0 2vw;
   }
-  #round-counter {
-    padding-left: 25vw
+  #counter-div {
+    margin: 3vh 0 3vh 25vw;
+    height:7vh;
   }
 }
 
@@ -263,4 +264,9 @@
 #new-session {
   padding-top: 1.5vh;
   margin-top: 3.5vh;
+}
+
+#counter-div {
+  margin: 5vh 0 5vh 190px;
+  height:7vh;
 }
