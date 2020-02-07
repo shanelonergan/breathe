@@ -16,7 +16,7 @@ function renderLogin() {
 	} else {
 		login.classList.add('is-fullwidth')
 		login.style.margin = '5vw 0'
-		mainHeader.classList.add('is-size-3')
+		mainHeader.classList.add('is-size-2')
 	}
 }
 
@@ -74,7 +74,12 @@ function slapUserInfo(user){
 	banner = document.querySelector("#banner")
 	userHeader = document.createElement("H1")
 	userHeader.innerText = user.name
-	userHeader.className += "column has-text-right is-size-1 has-text-primary animated bounceInDown"
+	userHeader.className += "column has-text-right has-text-primary animated bounceInDown"
+	if (screensize > 500) {
+		userHeader.classList.add('is-size-1')
+	} else {
+		userHeader.classList.add('is-size-2')
+	}
 	userHeader.dataset.id = user.id
 	userHeader.id = "user-header"
 	banner.appendChild(userHeader)
