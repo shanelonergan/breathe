@@ -297,7 +297,7 @@
   #new-round-div {
     /* height:50vh; */
     padding: 4vh 4vw;
-    height: 400px;
+    max-height: 400px;
   }
 
   #streak-div {
