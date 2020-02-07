@@ -1,5 +1,6 @@
 // import url from './url.js'
 // => variables
+const mainHeader = document.querySelector("#main-header")
 const login = document.querySelector("#login")
 const loginField = document.querySelector("#field")
 const modal = document.querySelector("#modal")
@@ -11,9 +12,11 @@ const screenSize = window.screen.width
 function renderLogin() {
 	if (screenSize > 500) {
 		loginField.classList.add('is-grouped')
+		mainHeader.classList.add('is-size-1')
 	} else {
 		login.classList.add('is-fullwidth')
 		login.style.margin = '5vw 0'
+		mainHeader.classList.add('is-size-3')
 	}
 }
 
