@@ -80,7 +80,7 @@
 								</div>
 							</div>
 						</div>
-						<a class="button is-info is-inverted is-outlined is-centered column is-size-3 has-text" id="new-session" style="height:8vh;">
+						<a id="new-session" class="button is-info is-inverted is-outlined is-centered column is-size-3 has-text" style="height:8vh;">
 					  		start a new session
 						</a>
 
@@ -88,11 +88,11 @@
 
 				</div>
 				<div class="column is-hidden" id = "breath-column">
-					<div class="notification is-info" id="breath-div">
-							<p class="has-text-centered is-size-3">breath count</p>
+					<div id="breath-div" class="notification is-info">
+							<p id='upper-breath-count-text' class="has-text-centered is-size-3">breath count</p>
 						<div class="columns is-centered" style="padding-top:4vw;height:16vw;">
 							<div class="column notification is-paddingless is-marginless is-5">
-								<p class="has-text-centered has-text-info" id="breath-count" style="font-size:8vw">0</p>
+								<p id="breath-count" class="has-text-centered has-text-info" style="font-size:8vw">0</p>
 							</div>
 						</div>
 					</div>
@@ -112,7 +112,7 @@
 							<p class="has-text-centered has-text-info is-size-1 animated heartBeat" id="streak-count">0</p>
 							</div>
 						</div>
-						<p class="has-text-centered is-size-3" style="padding-top:10vh;">days in a row</p>
+						<p id='lower-streak-text' class="has-text-centered is-size-3">days in a row</p>
 					</div>
 				</div>
 				<div class="column is-hidden" id = "instructions-column">
