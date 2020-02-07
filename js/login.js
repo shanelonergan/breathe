@@ -75,7 +75,7 @@ function slapUserInfo(user){
 	userHeader = document.createElement("H1")
 	userHeader.innerText = user.name
 	userHeader.className += "column has-text-right has-text-primary animated bounceInDown"
-	if (screensize > 500) {
+	if (screenSize > 500) {
 		userHeader.classList.add('is-size-1')
 	} else {
 		userHeader.classList.add('is-size-2')
