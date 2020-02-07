@@ -275,6 +275,19 @@
   padding:6vh 4vw;
 }
 
+#breath-div {
+  height: 50vh
+}
+
+#instructions-div {
+  height: 50vh;
+  padding-top: 7vh
+}
+
+#instructions-text {
+  font-size: 2.3vw;
+}
+
 @media only screen and (max-width: 500px) {
   #login-div {
     padding: 0 2vw 0 2vw;
@@ -303,5 +316,18 @@
   #streak-div {
     height: 400px;
     padding: 6vh 4vw;
+  }
+
+  #breath-div {
+    padding: 2vw 8vw 8vw 8vw;
+    height: auto
+  }
+
+  #instructions-div {
+    padding: 8vh 5vh
+  }
+
+  #instructions-text {
+    font-size: 22px;
   }
 }
