@@ -286,8 +286,8 @@
     padding-top: 0.5vh;
   }
   #new-round-div {
-    height:50vh;
+    /* height:50vh; */
     padding:4vh 4vw;
-    min-height: 420px;
+    height: 435px;
   }
 }
