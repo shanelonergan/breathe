@@ -2,12 +2,14 @@
 
 // let url ='https://breathe-daily.herokuapp.com'
 let sessionsUrl = url + "/sessions"
+let landing = document.querySelector("#landing")
 let sessionButton = document.querySelector("#new-session")
 let roundsInput = document.querySelector("#rounds")
 let totalRoundsSpan = document.querySelector("#total-rounds")
 let currentBreathRoundSpan = document.querySelector("#breath-current-round")
 let breathCount = document.querySelector("#breath-count")
 let breathDiv = document.querySelector("#breath-div")
+let instructionsDiv = document.querySelector("#instructions-div")
 let roundCounter = document.querySelector("#round-counter")
 let upArrow = document.querySelector("#up-arrow")
 let downArrow = document.querySelector("#down-arrow")
@@ -41,7 +43,7 @@ function beginSession(){
 	currentBreathRoundSpan.innerText = currentRound
 	currentBreath = 0
 	breathCount.innerText = currentBreath
-	instructionsText.innerText = "We will start with 30 deep breaths. After each exhale, hit the space key. After your 30th breath, exhale halfway, and then press the spacebar. Begin holding your breath!"
+	instructionsText.innerText = "We will start with 30 deep breaths. After each exhale, hit the space key. After your 30th breath, exhale halfway, and then press the spacebar (or tap the screen). Begin holding your breath!"
 
 }
 
@@ -49,6 +51,8 @@ function showBreathCounter(){
 	// coming from beginSession
 
 	document.addEventListener("keyup", incrementBreath)
+	breathDiv.addEventListener("touchend", incrementBreath, false)
+	instructionsDiv.addEventListener("touchend", incrementBreath, false)
 	newRoundColumn.classList.add("is-hidden")
 	streakColumn.classList.add("is-hidden")
 	breathColumn.classList.remove("is-hidden")
@@ -59,7 +63,7 @@ function showBreathCounter(){
 function incrementBreath (event) {
 	// coming from showBreathCounter
 
-	if (event.keyCode == 32){
+	if (event.keyCode == 32 || event.type === 'touchend'){
 		currentBreath = parseInt(breathCount.innerText, 10)
 		if (currentBreath === 30) {
 			holdBreath()
@@ -74,19 +78,20 @@ function incrementBreath (event) {
 function holdBreath() {
 	// coming from incrementBreath
 
-	document.addEventListener("keyup", incrementBreath)
 	breathColumn.classList.add("is-hidden")
 	timerColumn.classList.remove("is-hidden")
 	instructionsText.innerText = "Hold as long as you can! Press space when you exhale."
 	instructionsText.style.fontSize = '4vw'
 	startTimer()
 	document.addEventListener('keyup', beginBreathHolding)
+	breathDiv.addEventListener("touchend", beginBreathHolding, false)
+	instructionsDiv.addEventListener("touchend", beginBreathHolding, false)
 }
 
 function beginBreathHolding() {
 	// coming from holdBreath
 
-	if (event.keyCode == 32) {
+	if (event.keyCode == 32 || event.type === 'touchend') {
 		resetTimer()
 		breathColumn.classList.add("is-hidden")
 		timerColumn.classList.add("is-hidden")
@@ -94,6 +99,8 @@ function beginBreathHolding() {
 		instructionsText.style.fontSize = '4.5vw'
 		document.removeEventListener('keyup', beginBreathHolding)
 		document.addEventListener("keyup", addShortHold)
+		breathDiv.addEventListener("touchend", addShortHold, false)
+		instructionsDiv.addEventListener("touchend", addShortHold, false)
 		currentBreath = 0
 		breathCount.innerText = currentBreath
 
@@ -102,7 +109,7 @@ function beginBreathHolding() {
 
 function addShortHold(){
 	// coming from beginBreathHolding
-	if (event.keyCode == 32) {
+	if (event.keyCode == 32 || event.type === 'touchend') {
 		shortHold()
 		document.removeEventListener("keyup", addShortHold)
 	}
@@ -110,6 +117,8 @@ function addShortHold(){
 
 function shortHold(){
 	document.addEventListener("keyup", endRound)
+	breathDiv.addEventListener("touchend", endRound, false)
+	instructionsDiv.addEventListener("touchend", endRound, false)
 	breathColumn.classList.add("is-hidden")
 	timerColumn.classList.remove("is-hidden")
 	instructionsText.innerText = "Hold for 30 seconds. You are almost done! Press space when you exhale."
@@ -119,7 +128,7 @@ function shortHold(){
 
 function endRound() {
 	// coming from add short hold
-	if (event.keyCode == 32) {
+	if (event.keyCode == 32 || event.type === 'touchend') {
 		document.removeEventListener("keyup", endRound)
 		timerColumn.classList.add("is-hidden")
 
