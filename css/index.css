@@ -297,6 +297,11 @@
   padding-bottom: 3vh
 }
 
+#timer-div {
+  height: 50vh;
+  padding: 19vh 5vh;
+}
+
 @media only screen and (max-width: 500px) {
   #login-div {
     padding: 0 2vw 0 2vw;
@@ -338,5 +343,14 @@
 
   #instructions-text {
     font-size: 22px;
+  }
+
+  #timer-div {
+    height: 24vh;
+    padding: 5vh;
+  }
+
+  .hero-body {
+    padding: 1.5vh
   }
 }
